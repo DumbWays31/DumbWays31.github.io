@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main  # ou la branche que vous utilisez pour le déploiement
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          npm install
+          npm run build  # ajustez cette commande selon votre processus de build
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          branch: gh-pages  # ou une autre branche pour GitHub Pages
+          folder: build  # le dossier généré après le build
